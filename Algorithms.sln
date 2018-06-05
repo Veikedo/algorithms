@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms.Lib", "Algorithms.Lib\Algorithms.Lib.csproj", "{12C8B115-6BF8-45D1-A827-6CE267FF20DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms.Tests", "Algorithms.Tests\Algorithms.Tests.csproj", "{006F955C-49C8-456F-999A-3ACC1C523438}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12C8B115-6BF8-45D1-A827-6CE267FF20DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12C8B115-6BF8-45D1-A827-6CE267FF20DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12C8B115-6BF8-45D1-A827-6CE267FF20DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12C8B115-6BF8-45D1-A827-6CE267FF20DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{006F955C-49C8-456F-999A-3ACC1C523438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{006F955C-49C8-456F-999A-3ACC1C523438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{006F955C-49C8-456F-999A-3ACC1C523438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{006F955C-49C8-456F-999A-3ACC1C523438}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
