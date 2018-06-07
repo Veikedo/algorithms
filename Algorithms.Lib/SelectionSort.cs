@@ -1,34 +1,46 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
 namespace Algorithms.Lib
 {
     public static class SelectionSort
     {
-        public static IEnumerable<int> Sort(int[] sut)
+        public static int[] Sort(int[] sut)
         {
             var array = sut.ToArray();
+            var upperBound = array.Length;
 
-            for (var i = 0; i < array.Length; i++)
+            for (var i = 0; i < upperBound; i++)
             {
                 var minIndex = i;
-                var min = array[minIndex];
+                var maxIndex = upperBound - 1;
 
-                for (int j = i + 1; j < array.Length; j++)
+                for (int j = i + 1; j < upperBound; j++)
                 {
-                    if (array[j] < min)
+                    if (array[j] < array[minIndex])
                     {
                         minIndex = j;
-                        min = array[minIndex];
+                    }
+                    else if (array[j] > array[maxIndex])
+                    {
+                        maxIndex = j;
                     }
                 }
 
                 if (minIndex != i)
                 {
                     var tmp = array[i];
-                    array[i] = min;
+                    array[i] = array[minIndex];
                     array[minIndex] = tmp;
                 }
+
+                if (maxIndex != upperBound - 1)
+                {
+                    var tmp = array[upperBound - 1];
+                    array[upperBound - 1] = array[maxIndex];
+                    array[maxIndex] = tmp;
+                }
+
+                upperBound--;
             }
 
             return array;

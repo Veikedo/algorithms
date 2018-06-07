@@ -15,4 +15,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Algorithms.Lib\Algorithms.Lib.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="rand.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

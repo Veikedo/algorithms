@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using System.Linq;
 using Algorithms.Lib;
 using FluentAssertions;
@@ -7,41 +9,52 @@ namespace Algorithms.Tests
 {
     public class SortingTests
     {
-        public SortingTests()
+        static SortingTests()
         {
-            _sut = new[] {4, 1, 3, 2, 4, 7, 9, 50, 1, 74, 200, 30, 4, 7};
-            _expected = _sut.OrderBy(x => x);
+            Sut = File
+                .ReadAllBytes("rand.bin")
+                .Select(Convert.ToInt32)
+                .ToArray();
+
+            Expected = Sut.OrderBy(x => x).ToArray();
         }
 
-        private readonly int[] _sut;
-        private readonly IOrderedEnumerable<int> _expected;
-
-        [Fact]
-        public void QuickSortTest()
-        {
-            var sorted = QuickSort.Sort(_sut);
-            sorted.Should().ContainInOrder(_expected);
-        }
-
-        [Fact]
-        public void SelectionSortTest()
-        {
-            var sorted = SelectionSort.Sort(_sut);
-            sorted.Should().ContainInOrder(_expected);
-        }
+        private static readonly int[] Sut;
+        private static readonly int[] Expected;
 
         [Fact]
         public void BubbleSortTest()
         {
-            var sorted = BubbleSort.Sort(_sut);
-            sorted.Should().ContainInOrder(_expected);
+            var sorted = BubbleSort.Sort(Sut);
+            sorted.Should().ContainInOrder(Expected);
         }
 
         [Fact]
         public void InsertionSortTest()
         {
-            var sorted = InsertionSort.Sort(_sut);
-            sorted.Should().ContainInOrder(_expected);
+            var sorted = InsertionSort.Sort(Sut);
+            sorted.Should().ContainInOrder(Expected);
+        }
+
+        [Fact]
+        public void LinqOrderBySortTest()
+        {
+            var sorted = Sut.OrderBy(x => x).ToList();
+            sorted.Should().ContainInOrder(Expected);
+        }
+
+        [Fact]
+        public void QuickSortTest()
+        {
+            var sorted = QuickSort.Sort(Sut);
+            sorted.Should().ContainInOrder(Expected);
+        }
+
+        [Fact]
+        public void SelectionSortTest()
+        {
+            var sorted = SelectionSort.Sort(Sut);
+            sorted.Should().ContainInOrder(Expected);
         }
     }
 }
