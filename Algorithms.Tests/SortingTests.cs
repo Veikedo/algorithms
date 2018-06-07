@@ -15,7 +15,6 @@ namespace Algorithms.Tests
                 .ReadAllBytes("rand.bin")
                 .Select(Convert.ToInt32)
                 .ToArray();
-
             Expected = Sut.OrderBy(x => x).ToArray();
         }
 

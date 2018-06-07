@@ -1,38 +1,57 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
 namespace Algorithms.Lib
 {
     public static class QuickSort
     {
-        public static IEnumerable<int> Sort(int[] sut)
+        public static int[] Sort(int[] sut)
         {
-            if (sut.Length == 0)
-            {
-                return sut;
-            }
+            var arr = sut.ToArray();
+            SortImpl(arr, 0, arr.Length - 1);
 
-            if (sut.Length == 1)
-            {
-                return sut;
-            }
-
-            var pivot = sut.First();
-            var (lt, gte) = sut.Skip(1).Partition(x => x < pivot);
-
-            return Sort(lt)
-                .Concat(new[] {pivot})
-                .Concat(Sort(gte));
+            return arr;
         }
 
-        public static (TSource[] lt, TSource[] gte) Partition<TSource>(
-            this IEnumerable<TSource> src, Func<TSource, bool> key
-        )
+        public static void SortImpl(int[] arr, int lo, int hi)
         {
-            var lookup = src.ToLookup(key);
-            return (lookup[true].ToArray(), lookup[false].ToArray());
+            if (lo >= hi)
+            {
+                return;
+            }
+
+            var p = Partition(arr, lo, hi);
+
+            SortImpl(arr, lo, p);
+            SortImpl(arr, p + 1, hi);
+        }
+
+        public static int Partition(int[] arr, int lo, int hi)
+        {
+            var pivot = arr[lo];
+            var i = lo - 1;
+            var j = hi + 1;
+
+            while (true)
+            {
+                do
+                {
+                    i++;
+                } while (arr[i] < pivot);
+
+                do
+                {
+                    j--;
+                } while (arr[j] > pivot);
+
+                if (i >= j)
+                {
+                    return j;
+                }
+
+                var tmp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = tmp;
+            }
         }
     }
 }
