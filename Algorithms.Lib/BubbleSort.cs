@@ -7,21 +7,25 @@ namespace Algorithms.Lib
     {
         public static IReadOnlyList<int> Sort(int[] src)
         {
-            var arr = src.ToArray();
-            for (int i = 0; i < arr.Length; i++)
+            var number = src.ToArray();
+
+            var flag = true;
+            for (int i = 1; i <= number.Length - 1 && flag; i++)
             {
-                for (int j = 0; j < arr.Length - 1; j++)
+                flag = false;
+                for (int j = 0; j < number.Length - 1; j++)
                 {
-                    if (arr[j] > arr[j + 1])
+                    if (number[j + 1] < number[j])
                     {
-                        var temp = arr[j + 1];
-                        arr[j + 1] = arr[j];
-                        arr[j] = temp;
+                        var temp = number[j];
+                        number[j] = number[j + 1];
+                        number[j + 1] = temp;
+                        flag = true;
                     }
                 }
             }
 
-            return arr;
+            return number;
         }
     }
 }
